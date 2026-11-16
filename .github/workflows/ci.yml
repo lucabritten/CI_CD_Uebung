@@ -21,10 +21,8 @@ jobs:
           java-version: '21'
           cache: maven
       - run: mvn --batch-mode --no-transfer-progress clean verify
-        id: run_tests
-      - name: build-docker-image
-        if: steps.run_tests.outputs.exit_code == 0
-        run: docker build .
+      - name: Build Docker image
+        run: docker build -t cicd-java-demo:${{ github.sha }} .
       # BONUS: Add a docker build step after all tests pass.
       - name: Workshop reminder
         run: echo "TODO - add Java setup and Maven tests; this green job is not yet a real CI pipeline!"
