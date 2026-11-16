@@ -1,0 +1,21 @@
+# STUDENT STARTER: Complete the missing steps during the workshop.
+name: Java CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      # TODO 1: Add actions/setup-java@v6 (distribution: temurin, java-version: '21', cache: maven)
+      # TODO 2: Add a step that runs: mvn --batch-mode --no-transfer-progress clean verify
+      # BONUS: Add a docker build step after all tests pass.
+      - name: Workshop reminder
+        run: echo "TODO - add Java setup and Maven tests; this green job is not yet a real CI pipeline!"
