@@ -1,0 +1,21 @@
+name: release.yml
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: read
+  packages: write
+jobs:
+  releases:
+    runs-on: :ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login in to GHCR
+        run: echo "${{ secrets.ACTIONS_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}:${GITHUB_REF_NAME}
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
