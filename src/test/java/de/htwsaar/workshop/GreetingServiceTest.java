@@ -7,7 +7,7 @@ class GreetingServiceTest {
     private final GreetingService service = new GreetingService();
 
     @Test void saysHelloToStudent() {
-        assertEquals("Hello, Greece!", service.greet("Ada"));
+        assertEquals("Hello, Ada!", service.greet("Ada"));
     }
 
     @Test void fallsBackForBlankName() {
